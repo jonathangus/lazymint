@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import { DeployFunction } from 'hardhat-deploy/types';
 
-const name = 'Counter';
+const name = 'LazyNFT';
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre;
@@ -10,7 +10,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const deployment = await deploy(name, {
     from: deployer,
-    args: [],
+    args: [
+      'https://gateway.pinata.cloud/ipfs/QmfK4jMsx5qZ3fBiixfYawRQsrCGrGjgMXKbYzkovF7Qwg/',
+    ],
   });
 
   deployments.log(`Contract ${name} deployed at ${deployment.address}`);

@@ -8,6 +8,6 @@ type Config = {
 
 export const config: Config = {
   isProduction: process.env.NODE_ENV === 'production',
-  defaultChains: [chain.rinkeby],
-  fallbackId: chain.rinkeby.id,
+  defaultChains: [chain.goerli],
+  fallbackId: chain.goerli.id,
 };
