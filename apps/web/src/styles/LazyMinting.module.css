@@ -1,0 +1,18 @@
+.lazyMintFont {
+    font-family: 'SF Pro Rounded';
+    src: url('../fonts/sfFont.ttf');
+    font-weight: normal;
+    color: black;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #CACACA;
+    border-radius: 16px;
+    width: 375px;
+    height: 460px;
+}

@@ -37,7 +37,9 @@ const Web3Provider = ({ children }) => {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} theme={darkTheme({})}>
+      <RainbowKitProvider chains={chains} theme={darkTheme({
+        accentColor: 'black',
+      })}>
         <LFGProvider
           notice={({ status, message }) =>
             notice({ status: status as Status, message })

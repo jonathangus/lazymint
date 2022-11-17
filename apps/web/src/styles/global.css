@@ -1,0 +1,18 @@
+html,
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'SF Pro Rounded';
+  src: url('../fonts/sfFont.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Rounded Bold';
+  src: url('../fonts/sfFont-bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}

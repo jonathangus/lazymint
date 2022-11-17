@@ -1,6 +1,11 @@
 import { useAccount } from 'wagmi';
 import { useContractRead, useContractWrite } from 'wagmi-lfg';
 import { LazyNFT__factory } from 'web3-config';
+import QRCodeWithButton from './QRCodeWithButton';
+import VerifyingClaim from './VerifyingClaim';
+import ReadyToMint from "./ReadyToMint";
+import TryAgain from "./TryAgain";
+import NFTMintSuccess from "./NFTMintSuccess";
 
 type Props = {};
 
@@ -10,12 +15,6 @@ const Demo = ({}: Props) => {
     args: [userAddress as string],
     enabled: !!userAddress,
   });
-
-  const {
-    waitForTxResult,
-    write: addWatcher,
-    isLoading,
-  } = useContractWrite(LazyNFT__factory, 'addWatcher');
 
   const { waitForTxResult: mintTx, write: tmpMint } = useContractWrite(
     LazyNFT__factory,
@@ -27,33 +26,40 @@ const Demo = ({}: Props) => {
   });
 
   return (
-    <div>
-      <button
-        disabled={waitForTxResult.isLoading}
-        onClick={() => {
-          addWatcher();
-        }}
-      >
-        Add watcher
-      </button>
+    <>
+      <QRCodeWithButton />
+      <VerifyingClaim />
+      <ReadyToMint />
+      <TryAgain />
+      <NFTMintSuccess />
+      {/* <div>
+        <button
+          disabled={waitForTxResult.isLoading}
+          onClick={() => {
+            addWatcher();
+          }}
+        >
+          Add watcher
+        </button>
 
-      {typeof isWatched == 'boolean' && (
-        <div>Is being watched: {isWatched.toString()}</div>
-      )}
+        {typeof isWatched == 'boolean' && (
+          <div>Is being watched: {isWatched.toString()}</div>
+        )}
 
-      <button
-        disabled={mintTx.isLoading}
-        onClick={() => {
-          tmpMint();
-        }}
-      >
-        temp mint
-      </button>
+        <button
+          disabled={mintTx.isLoading}
+          onClick={() => {
+            tmpMint();
+          }}
+        >
+          temp mint
+        </button>
 
-      {typeof haveMinted == 'boolean' && (
-        <div>User have minted: {haveMinted.toString()}</div>
-      )}
-    </div>
+        {typeof haveMinted == 'boolean' && (
+          <div>User have minted: {haveMinted.toString()}</div>
+        )}
+      </div> */}
+    </>
   );
 };
 
