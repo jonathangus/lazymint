@@ -10,9 +10,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 16px;
+    padding: 0px;
     border: 1px solid #CACACA;
     border-radius: 16px;
     width: 375px;
     height: 460px;
+    box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid #CACACA;
+
 }

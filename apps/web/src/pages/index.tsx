@@ -2,7 +2,8 @@ import { useContractRead } from 'wagmi-lfg';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Demo from '../components/Demo';
 import styles from '../styles/LazyMinting.module.css';
-
+import { useContext } from "react";
+import LazyMintStepsContext from '../context/LazyMintStepsContext';
 
 const Header = () => {
   return (
@@ -20,6 +21,8 @@ const Header = () => {
 };
 
 const Page = () => {
+  const [step, setStep] = useContext(LazyMintStepsContext);
+  
   return (
     <>
 
@@ -33,7 +36,7 @@ const Page = () => {
           alignItems: 'center',
         }}
       >
-        <Demo />
+        <Demo step={step}/>
       </div>
     </>
   );

@@ -3,12 +3,18 @@ import React from 'react';
 import Web3Provider from '../components/Web3Provider';
 import { NotificationsProvider } from 'reapop';
 import NotificationHandler from '../components/NotificationHandler';
+import LazyMintStepsContext from '../context/LazyMintStepsContext';
+import { useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [step, setStep] = useState(1);
+
   return (
     <NotificationsProvider>
       <Web3Provider>
-        <Component {...pageProps} />
+        <LazyMintStepsContext.Provider value={[step, setStep]}>
+          <Component {...pageProps} />
+        </LazyMintStepsContext.Provider>
         <NotificationHandler />
       </Web3Provider>
     </NotificationsProvider>
