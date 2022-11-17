@@ -3,6 +3,21 @@ body {
   margin: 0;
 }
 
+
+@font-face {
+  font-family: 'SF Pro Rounded Bold';
+  src: url('../fonts/sfFontBold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Rounded Semibold';
+  src: url('../fonts/SF-Pro-Rounded-Semibold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @font-face {
   font-family: 'SF Pro Rounded';
   src: url('../fonts/sfFont.ttf');
@@ -10,9 +25,4 @@ body {
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'SF Pro Rounded Bold';
-  src: url('../fonts/sfFont-bold.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
+

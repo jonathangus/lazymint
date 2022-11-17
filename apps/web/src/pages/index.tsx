@@ -2,7 +2,7 @@ import { useContractRead } from 'wagmi-lfg';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Demo from '../components/Demo';
 import styles from '../styles/LazyMinting.module.css';
-import { useContext } from "react";
+import { useContext } from 'react';
 import LazyMintStepsContext from '../context/LazyMintStepsContext';
 
 const Header = () => {
@@ -14,7 +14,9 @@ const Header = () => {
         justifyContent: 'space-between',
       }}
     >
-      <h2 className={styles.lazyMintFont}>Lazy Mint</h2>
+      <h2 className={styles.lazyMintFont} style={{ fontWeight: 700 }}>
+        Lazy Mint
+      </h2>
       <ConnectButton label="Connect" />
     </div>
   );
@@ -22,10 +24,9 @@ const Header = () => {
 
 const Page = () => {
   const [step, setStep] = useContext(LazyMintStepsContext);
-  
+
   return (
     <>
-
       <div>
         <Header />
       </div>
@@ -36,7 +37,7 @@ const Page = () => {
           alignItems: 'center',
         }}
       >
-        <Demo step={step}/>
+        <Demo step={step} />
       </div>
     </>
   );
