@@ -11,7 +11,7 @@ const ReadyToMint = ({ haveMinted, setStep }) => {
     <>
       <div className={styles.cardContainer}>
         <div style={{ fontSize: '120px' }}>🎉</div>
-        <h3 style={{ textAlign: 'center' }}>
+        <h3 style={{ textAlign: 'center', fontSize: "18px" }}>
           Your soon-to-be NFT is all set to lazy mint soon. It will
           automatically be displayed here. Check back later
         </h3>
