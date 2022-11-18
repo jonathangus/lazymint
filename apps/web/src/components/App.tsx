@@ -9,6 +9,7 @@ import VerifyingSignUp from './VerifyingSignUp';
 
 const App = () => {
   const [step, setStep] = useState(1);
+  const [sequencer, setSequencer] = useState(true);
   const { address: userAddress } = useAccount();
   const { data: isWatched, isLoading: isLoadingWatcher } = useContractRead(
     LazyNFT__factory,
@@ -42,8 +43,9 @@ const App = () => {
       setStep(1);
     }  
     // sequencer is used to not collide with the haveMinted state because both are true at the same time
-    else if (isWatched === true) {
+    else if (isWatched === true && sequencer) {
       setStep(3);
+      setSequencer(false);
     } 
   }, [step, isLoading, isWatched, haveMinted]);
 
