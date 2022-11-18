@@ -12,7 +12,7 @@ const VerifyingSignUp = () => {
         >
           ⏳
         </motion.div>
-        <h3 style={{ textAlign: 'center' }}>
+        <h3 style={{ textAlign: 'center', fontSize: "18px" }}>
           Checking that you signed on to the lazy minting list
         </h3>
       </div>
