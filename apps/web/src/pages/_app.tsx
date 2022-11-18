@@ -7,7 +7,7 @@ import LazyMintStepsContext from '../context/LazyMintStepsContext';
 import { useState } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
 
   return (
     <NotificationsProvider>

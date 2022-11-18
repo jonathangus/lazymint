@@ -1,10 +1,10 @@
 
 import LazyMintSteps from './LazyMintSteps';
 
-const Demo = ({ step }) => {
+const Demo = ({ step, ...props }) => {
   return (
     <>
-      <LazyMintSteps step={step} />
+      <LazyMintSteps step={step} {...props}/>
     </>
   );
 };
