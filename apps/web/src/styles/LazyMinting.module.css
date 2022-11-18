@@ -8,6 +8,7 @@
 .cardContainer {
     display: flex;
     flex-direction: column;
+    font-family: "SF Pro Rounded", "system-ui";
     justify-content: center;
     align-items: center;
     padding: 0px;
