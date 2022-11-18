@@ -20,28 +20,50 @@ import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 export interface LazyNFTInterface extends utils.Interface {
   contractName: "LazyNFT";
   functions: {
+    "acceptOwnership()": FunctionFragment;
     "addWatcher()": FunctionFragment;
+    "addressesToVerify(uint256)": FunctionFragment;
+    "approved()": FunctionFragment;
     "balanceOf(address,uint256)": FunctionFragment;
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
+    "batchVerify()": FunctionFragment;
+    "checkUpkeep(bytes)": FunctionFragment;
+    "counter()": FunctionFragment;
+    "fulfill(bytes32,bool)": FunctionFragment;
+    "interval()": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
+    "lastChecked()": FunctionFragment;
+    "lastTimeStamp()": FunctionFragment;
     "minted(address)": FunctionFragment;
     "owner()": FunctionFragment;
-    "renounceOwnership()": FunctionFragment;
+    "performUpkeep(bytes)": FunctionFragment;
+    "requestVolumeData(address)": FunctionFragment;
     "safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
-    "setURI(string)": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "tempMint()": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
+    "uintToString(uint256)": FunctionFragment;
     "uri(uint256)": FunctionFragment;
+    "volume()": FunctionFragment;
     "watchers(address)": FunctionFragment;
+    "withdrawLink()": FunctionFragment;
   };
 
+  encodeFunctionData(
+    functionFragment: "acceptOwnership",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "addWatcher",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "addressesToVerify",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "approved", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "balanceOf",
     values: [string, BigNumberish]
@@ -51,14 +73,40 @@ export interface LazyNFTInterface extends utils.Interface {
     values: [string[], BigNumberish[]]
   ): string;
   encodeFunctionData(
+    functionFragment: "batchVerify",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "checkUpkeep",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "counter", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "fulfill",
+    values: [BytesLike, boolean]
+  ): string;
+  encodeFunctionData(functionFragment: "interval", values?: undefined): string;
+  encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [string, string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "lastChecked",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "lastTimeStamp",
+    values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "minted", values: [string]): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
+    functionFragment: "performUpkeep",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "requestVolumeData",
+    values: [string]
   ): string;
   encodeFunctionData(
     functionFragment: "safeBatchTransferFrom",
@@ -72,7 +120,6 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "setApprovalForAll",
     values: [string, boolean]
   ): string;
-  encodeFunctionData(functionFragment: "setURI", values: [string]): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
@@ -82,23 +129,64 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "transferOwnership",
     values: [string]
   ): string;
+  encodeFunctionData(
+    functionFragment: "uintToString",
+    values: [BigNumberish]
+  ): string;
   encodeFunctionData(functionFragment: "uri", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "volume", values?: undefined): string;
   encodeFunctionData(functionFragment: "watchers", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "withdrawLink",
+    values?: undefined
+  ): string;
 
+  decodeFunctionResult(
+    functionFragment: "acceptOwnership",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "addWatcher", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "addressesToVerify",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "approved", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "balanceOfBatch",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "batchVerify",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "checkUpkeep",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "counter", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "fulfill", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "interval", data: BytesLike): Result;
+  decodeFunctionResult(
     functionFragment: "isApprovedForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "lastChecked",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "lastTimeStamp",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "minted", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "renounceOwnership",
+    functionFragment: "performUpkeep",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "requestVolumeData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -113,7 +201,6 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "setApprovalForAll",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "setURI", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
@@ -123,19 +210,38 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "transferOwnership",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(
+    functionFragment: "uintToString",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "uri", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "volume", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "watchers", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "withdrawLink",
+    data: BytesLike
+  ): Result;
 
   events: {
     "ApprovalForAll(address,address,bool)": EventFragment;
+    "ChainlinkCancelled(bytes32)": EventFragment;
+    "ChainlinkFulfilled(bytes32)": EventFragment;
+    "ChainlinkRequested(bytes32)": EventFragment;
+    "OwnershipTransferRequested(address,address)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
+    "RequestVolume(bytes32,bool,string)": EventFragment;
     "TransferBatch(address,address,address,uint256[],uint256[])": EventFragment;
     "TransferSingle(address,address,address,uint256,uint256)": EventFragment;
     "URI(string,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ChainlinkCancelled"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ChainlinkFulfilled"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ChainlinkRequested"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "OwnershipTransferRequested"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RequestVolume"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "TransferBatch"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "TransferSingle"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "URI"): EventFragment;
@@ -148,13 +254,43 @@ export type ApprovalForAllEvent = TypedEvent<
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
 
+export type ChainlinkCancelledEvent = TypedEvent<[string], { id: string }>;
+
+export type ChainlinkCancelledEventFilter =
+  TypedEventFilter<ChainlinkCancelledEvent>;
+
+export type ChainlinkFulfilledEvent = TypedEvent<[string], { id: string }>;
+
+export type ChainlinkFulfilledEventFilter =
+  TypedEventFilter<ChainlinkFulfilledEvent>;
+
+export type ChainlinkRequestedEvent = TypedEvent<[string], { id: string }>;
+
+export type ChainlinkRequestedEventFilter =
+  TypedEventFilter<ChainlinkRequestedEvent>;
+
+export type OwnershipTransferRequestedEvent = TypedEvent<
+  [string, string],
+  { from: string; to: string }
+>;
+
+export type OwnershipTransferRequestedEventFilter =
+  TypedEventFilter<OwnershipTransferRequestedEvent>;
+
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string],
-  { previousOwner: string; newOwner: string }
+  { from: string; to: string }
 >;
 
 export type OwnershipTransferredEventFilter =
   TypedEventFilter<OwnershipTransferredEvent>;
+
+export type RequestVolumeEvent = TypedEvent<
+  [string, boolean, string],
+  { requestId: string; approved: boolean; lastChecked: string }
+>;
+
+export type RequestVolumeEventFilter = TypedEventFilter<RequestVolumeEvent>;
 
 export type TransferBatchEvent = TypedEvent<
   [string, string, string, BigNumber[], BigNumber[]],
@@ -217,6 +353,14 @@ export interface LazyNFT extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    acceptOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "acceptOwnership()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     addWatcher(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
@@ -224,6 +368,20 @@ export interface LazyNFT extends BaseContract {
     "addWatcher()"(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    addressesToVerify(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "addressesToVerify(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    approved(overrides?: CallOverrides): Promise<[boolean]>;
+
+    "approved()"(overrides?: CallOverrides): Promise<[boolean]>;
 
     balanceOf(
       account: string,
@@ -249,6 +407,44 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber[]]>;
 
+    batchVerify(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    checkUpkeep(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+    "checkUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+    counter(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "counter()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    fulfill(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "fulfill(bytes32,bool)"(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    interval(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "interval()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     isApprovedForAll(
       account: string,
       operator: string,
@@ -261,6 +457,14 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    lastChecked(overrides?: CallOverrides): Promise<[string]>;
+
+    "lastChecked()"(overrides?: CallOverrides): Promise<[string]>;
+
+    lastTimeStamp(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "lastTimeStamp()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     minted(arg0: string, overrides?: CallOverrides): Promise<[boolean]>;
 
     "minted(address)"(
@@ -272,11 +476,23 @@ export interface LazyNFT extends BaseContract {
 
     "owner()"(overrides?: CallOverrides): Promise<[string]>;
 
-    renounceOwnership(
+    performUpkeep(
+      arg0: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    "renounceOwnership()"(
+    "performUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    requestVolumeData(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "requestVolumeData(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -328,16 +544,6 @@ export interface LazyNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    setURI(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    "setURI(string)"(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -357,14 +563,24 @@ export interface LazyNFT extends BaseContract {
     ): Promise<ContractTransaction>;
 
     transferOwnership(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
     "transferOwnership(address)"(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    uintToString(
+      _value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
+    "uintToString(uint256)"(
+      _value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     uri(arg0: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
 
@@ -373,13 +589,33 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    volume(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    "volume()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     watchers(arg0: string, overrides?: CallOverrides): Promise<[boolean]>;
 
     "watchers(address)"(
       arg0: string,
       overrides?: CallOverrides
     ): Promise<[boolean]>;
+
+    withdrawLink(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "withdrawLink()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
+
+  acceptOwnership(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "acceptOwnership()"(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   addWatcher(
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -388,6 +624,20 @@ export interface LazyNFT extends BaseContract {
   "addWatcher()"(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  addressesToVerify(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "addressesToVerify(uint256)"(
+    arg0: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  approved(overrides?: CallOverrides): Promise<boolean>;
+
+  "approved()"(overrides?: CallOverrides): Promise<boolean>;
 
   balanceOf(
     account: string,
@@ -413,6 +663,44 @@ export interface LazyNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber[]>;
 
+  batchVerify(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "batchVerify()"(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  checkUpkeep(
+    arg0: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+  "checkUpkeep(bytes)"(
+    arg0: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+  counter(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "counter()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  fulfill(
+    _requestId: BytesLike,
+    _approved: boolean,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "fulfill(bytes32,bool)"(
+    _requestId: BytesLike,
+    _approved: boolean,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  interval(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "interval()"(overrides?: CallOverrides): Promise<BigNumber>;
+
   isApprovedForAll(
     account: string,
     operator: string,
@@ -425,6 +713,14 @@ export interface LazyNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  lastChecked(overrides?: CallOverrides): Promise<string>;
+
+  "lastChecked()"(overrides?: CallOverrides): Promise<string>;
+
+  lastTimeStamp(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "lastTimeStamp()"(overrides?: CallOverrides): Promise<BigNumber>;
+
   minted(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
   "minted(address)"(arg0: string, overrides?: CallOverrides): Promise<boolean>;
@@ -433,11 +729,23 @@ export interface LazyNFT extends BaseContract {
 
   "owner()"(overrides?: CallOverrides): Promise<string>;
 
-  renounceOwnership(
+  performUpkeep(
+    arg0: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  "renounceOwnership()"(
+  "performUpkeep(bytes)"(
+    arg0: BytesLike,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  requestVolumeData(
+    _wallet: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "requestVolumeData(address)"(
+    _wallet: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -489,16 +797,6 @@ export interface LazyNFT extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  setURI(
-    newuri: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  "setURI(string)"(
-    newuri: string,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
   supportsInterface(
     interfaceId: BytesLike,
     overrides?: CallOverrides
@@ -518,14 +816,24 @@ export interface LazyNFT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   transferOwnership(
-    newOwner: string,
+    to: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   "transferOwnership(address)"(
-    newOwner: string,
+    to: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  uintToString(
+    _value: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
+
+  "uintToString(uint256)"(
+    _value: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   uri(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
@@ -534,6 +842,10 @@ export interface LazyNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  volume(overrides?: CallOverrides): Promise<BigNumber>;
+
+  "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
+
   watchers(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
   "watchers(address)"(
@@ -541,10 +853,36 @@ export interface LazyNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  withdrawLink(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "withdrawLink()"(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
+    acceptOwnership(overrides?: CallOverrides): Promise<void>;
+
+    "acceptOwnership()"(overrides?: CallOverrides): Promise<void>;
+
     addWatcher(overrides?: CallOverrides): Promise<void>;
 
     "addWatcher()"(overrides?: CallOverrides): Promise<void>;
+
+    addressesToVerify(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "addressesToVerify(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    approved(overrides?: CallOverrides): Promise<boolean>;
+
+    "approved()"(overrides?: CallOverrides): Promise<boolean>;
 
     balanceOf(
       account: string,
@@ -570,6 +908,40 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber[]>;
 
+    batchVerify(overrides?: CallOverrides): Promise<void>;
+
+    "batchVerify()"(overrides?: CallOverrides): Promise<void>;
+
+    checkUpkeep(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+    "checkUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean, string] & { upkeepNeeded: boolean }>;
+
+    counter(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "counter()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    fulfill(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "fulfill(bytes32,bool)"(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    interval(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "interval()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     isApprovedForAll(
       account: string,
       operator: string,
@@ -582,6 +954,14 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
+    lastChecked(overrides?: CallOverrides): Promise<string>;
+
+    "lastChecked()"(overrides?: CallOverrides): Promise<string>;
+
+    lastTimeStamp(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "lastTimeStamp()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     minted(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
     "minted(address)"(
@@ -593,9 +973,22 @@ export interface LazyNFT extends BaseContract {
 
     "owner()"(overrides?: CallOverrides): Promise<string>;
 
-    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+    performUpkeep(arg0: BytesLike, overrides?: CallOverrides): Promise<void>;
 
-    "renounceOwnership()"(overrides?: CallOverrides): Promise<void>;
+    "performUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    requestVolumeData(
+      _wallet: string,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
+    "requestVolumeData(address)"(
+      _wallet: string,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     safeBatchTransferFrom(
       from: string,
@@ -645,10 +1038,6 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    setURI(newuri: string, overrides?: CallOverrides): Promise<void>;
-
-    "setURI(string)"(newuri: string, overrides?: CallOverrides): Promise<void>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -663,15 +1052,22 @@ export interface LazyNFT extends BaseContract {
 
     "tempMint()"(overrides?: CallOverrides): Promise<void>;
 
-    transferOwnership(
-      newOwner: string,
+    transferOwnership(to: string, overrides?: CallOverrides): Promise<void>;
+
+    "transferOwnership(address)"(
+      to: string,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "transferOwnership(address)"(
-      newOwner: string,
+    uintToString(
+      _value: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<string>;
+
+    "uintToString(uint256)"(
+      _value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     uri(arg0: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
@@ -680,12 +1076,20 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    volume(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     watchers(arg0: string, overrides?: CallOverrides): Promise<boolean>;
 
     "watchers(address)"(
       arg0: string,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    withdrawLink(overrides?: CallOverrides): Promise<void>;
+
+    "withdrawLink()"(overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -700,14 +1104,49 @@ export interface LazyNFT extends BaseContract {
       approved?: null
     ): ApprovalForAllEventFilter;
 
+    "ChainlinkCancelled(bytes32)"(
+      id?: BytesLike | null
+    ): ChainlinkCancelledEventFilter;
+    ChainlinkCancelled(id?: BytesLike | null): ChainlinkCancelledEventFilter;
+
+    "ChainlinkFulfilled(bytes32)"(
+      id?: BytesLike | null
+    ): ChainlinkFulfilledEventFilter;
+    ChainlinkFulfilled(id?: BytesLike | null): ChainlinkFulfilledEventFilter;
+
+    "ChainlinkRequested(bytes32)"(
+      id?: BytesLike | null
+    ): ChainlinkRequestedEventFilter;
+    ChainlinkRequested(id?: BytesLike | null): ChainlinkRequestedEventFilter;
+
+    "OwnershipTransferRequested(address,address)"(
+      from?: string | null,
+      to?: string | null
+    ): OwnershipTransferRequestedEventFilter;
+    OwnershipTransferRequested(
+      from?: string | null,
+      to?: string | null
+    ): OwnershipTransferRequestedEventFilter;
+
     "OwnershipTransferred(address,address)"(
-      previousOwner?: string | null,
-      newOwner?: string | null
+      from?: string | null,
+      to?: string | null
     ): OwnershipTransferredEventFilter;
     OwnershipTransferred(
-      previousOwner?: string | null,
-      newOwner?: string | null
+      from?: string | null,
+      to?: string | null
     ): OwnershipTransferredEventFilter;
+
+    "RequestVolume(bytes32,bool,string)"(
+      requestId?: BytesLike | null,
+      approved?: null,
+      lastChecked?: null
+    ): RequestVolumeEventFilter;
+    RequestVolume(
+      requestId?: BytesLike | null,
+      approved?: null,
+      lastChecked?: null
+    ): RequestVolumeEventFilter;
 
     "TransferBatch(address,address,address,uint256[],uint256[])"(
       operator?: string | null,
@@ -747,6 +1186,14 @@ export interface LazyNFT extends BaseContract {
   };
 
   estimateGas: {
+    acceptOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "acceptOwnership()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     addWatcher(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
@@ -754,6 +1201,20 @@ export interface LazyNFT extends BaseContract {
     "addWatcher()"(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
+
+    addressesToVerify(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "addressesToVerify(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    approved(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "approved()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     balanceOf(
       account: string,
@@ -779,6 +1240,41 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    batchVerify(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    checkUpkeep(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+
+    "checkUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    counter(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "counter()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    fulfill(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "fulfill(bytes32,bool)"(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    interval(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "interval()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     isApprovedForAll(
       account: string,
       operator: string,
@@ -791,6 +1287,14 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    lastChecked(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "lastChecked()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    lastTimeStamp(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "lastTimeStamp()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     minted(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "minted(address)"(
@@ -802,11 +1306,23 @@ export interface LazyNFT extends BaseContract {
 
     "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    renounceOwnership(
+    performUpkeep(
+      arg0: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    "renounceOwnership()"(
+    "performUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    requestVolumeData(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "requestVolumeData(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -858,16 +1374,6 @@ export interface LazyNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    setURI(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    "setURI(string)"(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -887,13 +1393,23 @@ export interface LazyNFT extends BaseContract {
     ): Promise<BigNumber>;
 
     transferOwnership(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     "transferOwnership(address)"(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    uintToString(
+      _value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "uintToString(uint256)"(
+      _value: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     uri(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
@@ -903,15 +1419,35 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    volume(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     watchers(arg0: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "watchers(address)"(
       arg0: string,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    withdrawLink(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "withdrawLink()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
+    acceptOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "acceptOwnership()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     addWatcher(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
@@ -919,6 +1455,20 @@ export interface LazyNFT extends BaseContract {
     "addWatcher()"(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
+
+    addressesToVerify(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "addressesToVerify(uint256)"(
+      arg0: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    approved(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "approved()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     balanceOf(
       account: string,
@@ -944,6 +1494,44 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    batchVerify(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    checkUpkeep(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "checkUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    counter(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "counter()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    fulfill(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "fulfill(bytes32,bool)"(
+      _requestId: BytesLike,
+      _approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    interval(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "interval()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     isApprovedForAll(
       account: string,
       operator: string,
@@ -955,6 +1543,14 @@ export interface LazyNFT extends BaseContract {
       operator: string,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    lastChecked(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "lastChecked()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    lastTimeStamp(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "lastTimeStamp()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     minted(
       arg0: string,
@@ -970,11 +1566,23 @@ export interface LazyNFT extends BaseContract {
 
     "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    renounceOwnership(
+    performUpkeep(
+      arg0: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    "renounceOwnership()"(
+    "performUpkeep(bytes)"(
+      arg0: BytesLike,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    requestVolumeData(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "requestVolumeData(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1026,16 +1634,6 @@ export interface LazyNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    setURI(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setURI(string)"(
-      newuri: string,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -1055,13 +1653,23 @@ export interface LazyNFT extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     transferOwnership(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     "transferOwnership(address)"(
-      newOwner: string,
+      to: string,
       overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    uintToString(
+      _value: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "uintToString(uint256)"(
+      _value: BigNumberish,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     uri(
@@ -1074,6 +1682,10 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    volume(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "volume()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     watchers(
       arg0: string,
       overrides?: CallOverrides
@@ -1082,6 +1694,14 @@ export interface LazyNFT extends BaseContract {
     "watchers(address)"(
       arg0: string,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    withdrawLink(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "withdrawLink()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
 }
