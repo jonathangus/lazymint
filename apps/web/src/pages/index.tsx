@@ -1,24 +1,42 @@
-import { Counter__factory } from 'web3-config';
-import Counter from '../components/Counter';
-import { useContractRead } from 'wagmi-lfg';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import App from "../components/App";
+import { useContractWrite } from 'wagmi-lfg';
+import { LazyNFT__factory } from 'web3-config';
+import styles from '../styles/LazyMinting.module.css';
+
+const Header = () => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}
+    >
+      <h2 className={styles.lazyMintFont} style={{ fontWeight: 700 }}>
+        Lazy Mint
+      </h2>
+      <ConnectButton label="Connect" />
+    </div>
+  );
+};
 
 const Page = () => {
-  const { data: currentTimestamp = null } = useContractRead(
-    Counter__factory,
-    'currentTimestamp'
-  );
-
   return (
-    <div style={{ display: 'grid', gap: 20 }}>
+    <>
       <div>
-        <ConnectButton />
+        <Header />
       </div>
-      <Counter />
-      <Counter />
-      <Counter />
-      {currentTimestamp && <div>Current timestamp: {+currentTimestamp}</div>}
-    </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <App />
+      </div>
+    </>
   );
 };
 

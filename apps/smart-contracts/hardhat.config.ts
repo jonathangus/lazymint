@@ -22,9 +22,12 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
   }
 });
 
-const INFURA_KEY = process.env.INFURA_ID;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ALCHEMY_KEY = process.env.ALCHEMY_KEY;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const GOERLI_ALCHEMY_KEY = process.env.GOERLI_ALCHEMY_KEY;
+
+console.log(PRIVATE_KEY);
+
 const config: HardhatUserConfig = {
   solidity: '0.8.14',
   defaultNetwork: 'hardhat',
@@ -37,13 +40,18 @@ const config: HardhatUserConfig = {
         interval: 5000,
       },
     },
-    optimismGoerli: {
-      url: `https://opt-goerli.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
+    arbitrum: {
+      url: `https://arb-mainnet.g.alchemy.com/v2/QSbautzyEXXlmdo7LPpY4A0btktHukG0`,
+      accounts: [`0x${PRIVATE_KEY}`],
     },
-    rinkeby: {
-      url: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
-      accounts: [`${PRIVATE_KEY}`],
+    goerli: {
+      url: `https://eth-goerli.g.alchemy.com/v2/QSbautzyEXXlmdo7LPpY4A0btktHukG0`,
+      accounts: [`0x${PRIVATE_KEY}`],
+    },
+    arbitrumGoerli: {
+      chainId: 421613,
+      url: `https://arb-goerli.g.alchemy.com/v2/7GcqA0npWY1j3OPaPmrYAtv3nWrJxoNI`,
+      accounts: [`0x${PRIVATE_KEY}`],
     },
     localhost: {
       url: 'http://127.0.0.1:8545',

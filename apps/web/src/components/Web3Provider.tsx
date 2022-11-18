@@ -18,7 +18,7 @@ import { Status } from 'reapop';
 const { chains, provider } = configureChains(config.defaultChains, [
   alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY }),
   infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_KEY }),
-  publicProvider(),
+  // publicProvider(),
 ]);
 
 const { connectors } = getDefaultWallets({
@@ -37,7 +37,9 @@ const Web3Provider = ({ children }) => {
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} theme={darkTheme({})}>
+      <RainbowKitProvider chains={chains} theme={darkTheme({
+        accentColor: 'black',
+      })}>
         <LFGProvider
           notice={({ status, message }) =>
             notice({ status: status as Status, message })
