@@ -1,5 +1,36 @@
 ## Chainlink Hackathon 2022
 
+Welcome you lazy minter! https://lazymint-chainlink.vercel.app/ 
+Grab a POAP -> get a NFT – completely automated
+
+## Inspiration
+Based on the principles of personalized experiences we want to find an easy way to grant access to communities. We're tired of verifying quests and checking back if you meet conditions to perform an action - we wanted to create a flow where a user instantly triggers an action once conditions are met. 
+
+Completely automated!
+
+## What it does
+Create a condition, like owning a specific token or POAP, check if it's raining outside via an API, or have liked a specific post on Twitter.
+
+Once your community members meet the set condition, trigger an automated condition via chainlink automation - like mint them an NFT! 
+
+An easier way to grant access and create a smooth flow for people in the web3 ecosystem - automated!
+
+## How we built it
+Let users mint a POAP, check if the wallet has the POAP and when the condition is met an NFT is automatically minted via chainlink automation to the user! To build it we used next.js & typescript, ethers, wagmi, hardhat, and the chainlink automation is buildout in solidity 
+
+## Challenges we ran into
+The hardest part has been deciding on the most suitable condition and smart contract action! We wanted to make it easy to understand: have a POAP -> receive an NFT
+
+## Accomplishments that we're proud of
+Creating a new standard of granting access to communities and automatic tasks like claiming NFT:s when you've completed a quest. Just making it super easy for users! 
+
+## What we learned
+Finding the balance between creating a usable app and showcasing a good case to more easily understand the product, basically finding the balance to scope a project down! Also details like finding a perfect way to distribute POAPs.
+
+## What's next for Lazy mint
+We would love to continue working on it and have more projects play around with access and the automatic actions from chainlink automation. Getting rid of the unnecessary hassle of claiming processes and forcing people to admin around things that can be removed!
+
+
 ## Getting Started
 
 First, run the development server:
