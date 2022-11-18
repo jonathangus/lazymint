@@ -11,7 +11,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const deployment = await deploy(name, {
     from: deployer,
     args: [
-      'https://gateway.pinata.cloud/ipfs/QmfK4jMsx5qZ3fBiixfYawRQsrCGrGjgMXKbYzkovF7Qwg/',
+      'https://gateway.pinata.cloud/ipfs/QmPosh8tfsqc2utmhMCtdMh2vgySXx9rhuN8CoLJKq3b5K/',
+      60 * 1000 * 1,
     ],
   });
 

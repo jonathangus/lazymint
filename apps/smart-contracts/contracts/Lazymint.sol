@@ -6,10 +6,6 @@ import '@chainlink/contracts/src/v0.8/ChainlinkClient.sol';
 import '@chainlink/contracts/src/v0.8/ConfirmedOwner.sol';
 import '@openzeppelin/contracts/utils/Strings.sol';
 
-interface IMintngContractInterface {
-    function safeMint(address to, string memory uri) external;
-}
-
 contract Lazymint is
     AutomationCompatibleInterface,
     ChainlinkClient,
@@ -27,8 +23,6 @@ contract Lazymint is
         bool approved,
         string lastChecked
     );
-    address private MintingContractAddress =
-        0x5cB675e6e9e947A1c40b3F83b673c6A8f803f3B7;
     uint256 public counter;
 
     /**
@@ -39,6 +33,7 @@ contract Lazymint is
 
     address[] public addressesToVerify;
 
+    mapping(address => bool) public watchers;
     mapping(bytes32 => address) private responseID;
 
     constructor(uint256 updateInterval) ConfirmedOwner(msg.sender) {
@@ -66,12 +61,9 @@ contract Lazymint is
         // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.
     }
 
-    function addAddress(address _newAddress) public {
-        addressesToVerify.push(_newAddress);
-    }
-
-    function setMintingContract(address _newContract) public onlyOwner {
-        MintingContractAddress = _newContract;
+    function addWatcher() public {
+        watchers[msg.sender] = true;
+        addressesToVerify.push(msg.sender);
     }
 
     function performUpkeep(
@@ -92,7 +84,7 @@ contract Lazymint is
     function batchVerify() public {
         for (uint256 i = 0; i < addressesToVerify.length; i++) {
             address currentWallet = addressesToVerify[i];
-            requestVolumeData(currentWallet, gateID);
+            requestVolumeData(currentWallet);
         }
     }
 
@@ -126,12 +118,21 @@ contract Lazymint is
         return string(_string);
     }
 
-    function buildUrl(address _wallet) public view returns (string memory) {
+    function buildUrl(address _wallet) internal pure returns (string memory) {
         return
             string.concat(
                 'https://lazymint-chainlink.vercel.app/api/poap?address=',
                 toAsciiString(_wallet)
             );
+    }
+
+    function removeAddress(uint256 index) internal {
+        if (index >= addressesToVerify.length) return;
+
+        addressesToVerify[index] = addressesToVerify[
+            addressesToVerify.length - 1
+        ];
+        addressesToVerify.pop();
     }
 
     function requestVolumeData(address _wallet)
@@ -161,24 +162,17 @@ contract Lazymint is
         address mintTo = responseID[_requestId];
         if (_approved = true) {
             execute(mintTo);
+
+            for (uint256 i = 0; i < addressesToVerify.length; i++) {
+                if (mintTo == addressesToVerify[i]) {
+                    removeAddress(i);
+                }
+            }
         }
         emit RequestVolume(_requestId, _approved, lastChecked);
     }
 
-    function execute(address mintTo) internal virtual {
-        gainAccess(mintTo);
-    }
-
-    function setNewProxyMint(address _newProxy) onlyOwner {
-        MintingContractAddress = _newProxy;
-    }
-
-    function gainAccess(address _newMemb) public {
-        IMintngContractInterface(MintingContractAddress).safeMint(
-            _newMemb,
-            someVariable
-        );
-    }
+    function execute(address account) internal virtual {}
 
     /**
      * Allow withdraw of Link tokens from the contract
