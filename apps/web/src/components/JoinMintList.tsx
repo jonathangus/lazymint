@@ -22,7 +22,7 @@ const JoinMintList = ({userAddress, addWatcher}) => {
           ✍️
         </div>
 
-        <h2>Join the Lazy Minting List</h2>
+        <h2 style={{ fontSize: "32px"}}>Join the Lazy Minting List</h2>
       </div>
       <button
         style={{

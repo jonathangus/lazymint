@@ -11,8 +11,8 @@ const handleOnClick = () => {
 
     return (
     <div className={styles.cardContainer}>
-      <h1 style={{ width: '100%', textAlign: 'center' }}>Claim poap:</h1>
-      <h2>
+      <h1 style={{ width: '100%', textAlign: 'center', fontSize: '32px' }}>Claim poap:</h1>
+      <h2 style={{ fontSize: "18px"}}>
         <Link href={poapLink}>
           <a target="_blank">{poapLink}</a>
         </Link>
