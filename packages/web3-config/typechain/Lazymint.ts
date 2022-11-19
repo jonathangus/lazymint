@@ -25,6 +25,7 @@ export interface LazymintInterface extends utils.Interface {
     "addressesToVerify(uint256)": FunctionFragment;
     "approved()": FunctionFragment;
     "batchVerify()": FunctionFragment;
+    "buidl(address)": FunctionFragment;
     "checkUpkeep(bytes)": FunctionFragment;
     "counter()": FunctionFragment;
     "fulfill(bytes32,bool)": FunctionFragment;
@@ -36,6 +37,7 @@ export interface LazymintInterface extends utils.Interface {
     "requestVolumeData(address)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
     "uintToString(uint256)": FunctionFragment;
+    "urlTest()": FunctionFragment;
     "volume()": FunctionFragment;
     "watchers(address)": FunctionFragment;
     "withdrawLink()": FunctionFragment;
@@ -58,6 +60,7 @@ export interface LazymintInterface extends utils.Interface {
     functionFragment: "batchVerify",
     values?: undefined
   ): string;
+  encodeFunctionData(functionFragment: "buidl", values: [string]): string;
   encodeFunctionData(
     functionFragment: "checkUpkeep",
     values: [BytesLike]
@@ -93,6 +96,7 @@ export interface LazymintInterface extends utils.Interface {
     functionFragment: "uintToString",
     values: [BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "urlTest", values?: undefined): string;
   encodeFunctionData(functionFragment: "volume", values?: undefined): string;
   encodeFunctionData(functionFragment: "watchers", values: [string]): string;
   encodeFunctionData(
@@ -114,6 +118,7 @@ export interface LazymintInterface extends utils.Interface {
     functionFragment: "batchVerify",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "buidl", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "checkUpkeep",
     data: BytesLike
@@ -146,6 +151,7 @@ export interface LazymintInterface extends utils.Interface {
     functionFragment: "uintToString",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "urlTest", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "volume", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "watchers", data: BytesLike): Result;
   decodeFunctionResult(
@@ -274,6 +280,16 @@ export interface Lazymint extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "buidl(address)"(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     checkUpkeep(
       arg0: BytesLike,
       overrides?: CallOverrides
@@ -356,6 +372,10 @@ export interface Lazymint extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    urlTest(overrides?: CallOverrides): Promise<[string]>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<[string]>;
+
     volume(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     "volume()"(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -411,6 +431,16 @@ export interface Lazymint extends BaseContract {
   ): Promise<ContractTransaction>;
 
   "batchVerify()"(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  buidl(
+    _wallet: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "buidl(address)"(
+    _wallet: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -496,6 +526,10 @@ export interface Lazymint extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  urlTest(overrides?: CallOverrides): Promise<string>;
+
+  "urlTest()"(overrides?: CallOverrides): Promise<string>;
+
   volume(overrides?: CallOverrides): Promise<BigNumber>;
 
   "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -541,6 +575,10 @@ export interface Lazymint extends BaseContract {
     batchVerify(overrides?: CallOverrides): Promise<void>;
 
     "batchVerify()"(overrides?: CallOverrides): Promise<void>;
+
+    buidl(_wallet: string, overrides?: CallOverrides): Promise<void>;
+
+    "buidl(address)"(_wallet: string, overrides?: CallOverrides): Promise<void>;
 
     checkUpkeep(
       arg0: BytesLike,
@@ -617,6 +655,10 @@ export interface Lazymint extends BaseContract {
       _value: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    urlTest(overrides?: CallOverrides): Promise<string>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<string>;
 
     volume(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -719,6 +761,16 @@ export interface Lazymint extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "buidl(address)"(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     checkUpkeep(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
 
     "checkUpkeep(bytes)"(
@@ -798,6 +850,10 @@ export interface Lazymint extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    urlTest(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     volume(overrides?: CallOverrides): Promise<BigNumber>;
 
     "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -854,6 +910,16 @@ export interface Lazymint extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "buidl(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -938,6 +1004,10 @@ export interface Lazymint extends BaseContract {
       _value: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    urlTest(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     volume(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
