@@ -27,6 +27,7 @@ export interface LazyNFTInterface extends utils.Interface {
     "balanceOf(address,uint256)": FunctionFragment;
     "balanceOfBatch(address[],uint256[])": FunctionFragment;
     "batchVerify()": FunctionFragment;
+    "buidl(address)": FunctionFragment;
     "checkUpkeep(bytes)": FunctionFragment;
     "counter()": FunctionFragment;
     "fulfill(bytes32,bool)": FunctionFragment;
@@ -46,6 +47,7 @@ export interface LazyNFTInterface extends utils.Interface {
     "transferOwnership(address)": FunctionFragment;
     "uintToString(uint256)": FunctionFragment;
     "uri(uint256)": FunctionFragment;
+    "urlTest()": FunctionFragment;
     "volume()": FunctionFragment;
     "watchers(address)": FunctionFragment;
     "withdrawLink()": FunctionFragment;
@@ -76,6 +78,7 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "batchVerify",
     values?: undefined
   ): string;
+  encodeFunctionData(functionFragment: "buidl", values: [string]): string;
   encodeFunctionData(
     functionFragment: "checkUpkeep",
     values: [BytesLike]
@@ -134,6 +137,7 @@ export interface LazyNFTInterface extends utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "uri", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: "urlTest", values?: undefined): string;
   encodeFunctionData(functionFragment: "volume", values?: undefined): string;
   encodeFunctionData(functionFragment: "watchers", values: [string]): string;
   encodeFunctionData(
@@ -160,6 +164,7 @@ export interface LazyNFTInterface extends utils.Interface {
     functionFragment: "batchVerify",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "buidl", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "checkUpkeep",
     data: BytesLike
@@ -215,6 +220,7 @@ export interface LazyNFTInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "uri", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "urlTest", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "volume", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "watchers", data: BytesLike): Result;
   decodeFunctionResult(
@@ -415,6 +421,16 @@ export interface LazyNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "buidl(address)"(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     checkUpkeep(
       arg0: BytesLike,
       overrides?: CallOverrides
@@ -589,6 +605,10 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    urlTest(overrides?: CallOverrides): Promise<[string]>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<[string]>;
+
     volume(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     "volume()"(overrides?: CallOverrides): Promise<[BigNumber]>;
@@ -668,6 +688,16 @@ export interface LazyNFT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   "batchVerify()"(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  buidl(
+    _wallet: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "buidl(address)"(
+    _wallet: string,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -842,6 +872,10 @@ export interface LazyNFT extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  urlTest(overrides?: CallOverrides): Promise<string>;
+
+  "urlTest()"(overrides?: CallOverrides): Promise<string>;
+
   volume(overrides?: CallOverrides): Promise<BigNumber>;
 
   "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -911,6 +945,10 @@ export interface LazyNFT extends BaseContract {
     batchVerify(overrides?: CallOverrides): Promise<void>;
 
     "batchVerify()"(overrides?: CallOverrides): Promise<void>;
+
+    buidl(_wallet: string, overrides?: CallOverrides): Promise<void>;
+
+    "buidl(address)"(_wallet: string, overrides?: CallOverrides): Promise<void>;
 
     checkUpkeep(
       arg0: BytesLike,
@@ -1075,6 +1113,10 @@ export interface LazyNFT extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    urlTest(overrides?: CallOverrides): Promise<string>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<string>;
 
     volume(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -1245,6 +1287,16 @@ export interface LazyNFT extends BaseContract {
     ): Promise<BigNumber>;
 
     "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "buidl(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1419,6 +1471,10 @@ export interface LazyNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    urlTest(overrides?: CallOverrides): Promise<BigNumber>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<BigNumber>;
+
     volume(overrides?: CallOverrides): Promise<BigNumber>;
 
     "volume()"(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1499,6 +1555,16 @@ export interface LazyNFT extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     "batchVerify()"(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    buidl(
+      _wallet: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "buidl(address)"(
+      _wallet: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1681,6 +1747,10 @@ export interface LazyNFT extends BaseContract {
       arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    urlTest(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    "urlTest()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     volume(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

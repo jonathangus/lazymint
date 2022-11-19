@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.9;
 
 import '@chainlink/contracts/src/v0.8/AutomationCompatible.sol';
 import '@chainlink/contracts/src/v0.8/ChainlinkClient.sol';
@@ -17,6 +17,7 @@ contract Lazymint is
     bytes32 private jobId;
     uint256 private fee;
     bool public approved;
+    string public urlTest;
 
     event RequestVolume(
         bytes32 indexed requestId,
@@ -37,7 +38,7 @@ contract Lazymint is
     mapping(bytes32 => address) private responseID;
 
     constructor(uint256 updateInterval) ConfirmedOwner(msg.sender) {
-        setChainlinkToken(0xf97f4df75117a78c1A5a0DBb814Af92458539FB4);
+        setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
         setChainlinkOracle(0xCC79157eb46F5624204f47AB42b3906cAA40eaB7);
         jobId = 'c1c5e92880894eb6b27d3cae19670aa3';
         fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
@@ -121,7 +122,7 @@ contract Lazymint is
     function buildUrl(address _wallet) internal pure returns (string memory) {
         return
             string.concat(
-                'https://lazymint-chainlink.vercel.app/api/poap?address=',
+                'https://lazymint-chainlink.vercel.app/api/poap?address=0x',
                 toAsciiString(_wallet)
             );
     }
@@ -133,6 +134,11 @@ contract Lazymint is
             addressesToVerify.length - 1
         ];
         addressesToVerify.pop();
+    }
+
+    function buidl(address _wallet) public {
+        string memory url = buildUrl(_wallet);
+        urlTest = url;
     }
 
     function requestVolumeData(address _wallet)
@@ -152,6 +158,7 @@ contract Lazymint is
         //todo add sendChainlinkRequest(req, fee) and wallet addy to mapping
         bytes32 response = sendChainlinkRequest(req, fee);
         responseID[response] = _wallet;
+        emit RequestVolume(jobId, true, url);
         return response;
     }
 
